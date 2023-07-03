@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84751406}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237750368}
+        m_TargetAssemblyTypeName: ScrollHorizontalButton, Assembly-CSharp
+        m_MethodName: MoveLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &84751406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,6 +1070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1044332193}
   - component: {fileID: 1044332194}
+  - component: {fileID: 1044332195}
   m_Layer: 5
   m_Name: Layout
   m_TagString: Untagged
@@ -1086,7 +1099,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1044332194
 MonoBehaviour:
@@ -1114,6 +1127,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1044332195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044332192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &1114719872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1231,7 @@ GameObject:
   - component: {fileID: 1170121610}
   - component: {fileID: 1170121609}
   - component: {fileID: 1170121608}
+  - component: {fileID: 1170121611}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -1275,7 +1303,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1170121609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1170121611}
+        m_TargetAssemblyTypeName: ExitButton, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1170121609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,6 +1354,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170121606}
   m_CullTransparentMesh: 1
+--- !u!114 &1170121611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170121606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31058c0de026ad74aba714e057618a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1218315399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,6 +1514,7 @@ GameObject:
   - component: {fileID: 1237750365}
   - component: {fileID: 1237750367}
   - component: {fileID: 1237750366}
+  - component: {fileID: 1237750368}
   m_Layer: 5
   m_Name: ScrollPanel
   m_TagString: Untagged
@@ -1528,6 +1581,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237750364}
   m_CullTransparentMesh: 1
+--- !u!114 &1237750368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237750364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90dfaf074860bb84b908f7a0b078e241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layout: {fileID: 1044332193}
+  animationDuration: 0.5
+  targetOffset: 700
+  currentTable: 1
 --- !u!1 &1247929902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,7 +2112,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1865222298}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237750368}
+        m_TargetAssemblyTypeName: ScrollHorizontalButton, Assembly-CSharp
+        m_MethodName: MoveRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1865222298
 MonoBehaviour:
   m_ObjectHideFlags: 0
