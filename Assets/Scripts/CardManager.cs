@@ -42,7 +42,7 @@ public class CardManager : MonoBehaviour
     }
     #endregion
     public GameObject cardPrefab;
-    public Transform cardParent;
+    public CardHolder cardHolder;
     public Transform playGroundTransform;
     public List<Sprite> heartsCards;
     public List<Sprite> clubsCards;
@@ -55,7 +55,7 @@ public class CardManager : MonoBehaviour
     public enum CardTypes { Hearts,Clubs,Diamonds,Spades,NUMBER_TYPES }
     private void Start()
     {
-        if (cardParent.gameObject.activeInHierarchy)
+        if (cardHolder.gameObject.activeInHierarchy)
             Initialize();
     }
     public void Initialize()
@@ -73,7 +73,7 @@ public class CardManager : MonoBehaviour
         }
 
         ShuffleDeck();
-        DealCards(); // Kartlarý daðýt
+        DealCards();
     }
 
     private int GetCardPuan(int value,int type)
@@ -100,7 +100,7 @@ public class CardManager : MonoBehaviour
 
     private void CreateCard(CardTypes type, int value, int puan)
     {
-        GameObject newCardObject = Instantiate(cardPrefab, cardParent);
+        GameObject newCardObject = Instantiate(cardPrefab, cardHolder.gameObject.transform);
         Card newCard = newCardObject.GetComponent<Card>();
         newCard.Init(type, value, puan, playGroundTransform);
 
@@ -120,11 +120,25 @@ public class CardManager : MonoBehaviour
             deck[j] = temp;
         }
     }
-    
+
+    public void DealCard()
+    {
+        if (cardHolder.cards.Count == 0)
+            GameManager.Instance.OnGameEnd.Invoke();
+        else
+            cardHolder.GetComponent<CardHolder>().DealToPlayer();
+
+    }
     private void DealCards()
     {
-        cardParent.GetComponent<CardHolder>().cards = deck;
-        cardParent.GetComponent<CardHolder>().Initialize();
+        CardHolder holder = cardHolder.GetComponent<CardHolder>();
+        for (int i = 0; i < GameManager.Instance.currentPlayers.Count; i++)
+        {
+            holder.PlayersHolders.Add(GameManager.Instance.currentPlayers[i].deckParent);
+
+        }
+        holder.cards = deck;
+        holder.Initialize();
 
     }
     public Sprite GetCardSprite(int value, CardTypes type)

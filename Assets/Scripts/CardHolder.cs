@@ -8,14 +8,7 @@ public class CardHolder : MonoBehaviour
     public Transform playGroundHolder;
     public TextMeshProUGUI cardCountText;
     public List<Transform> PlayersHolders;
-    private void Start()
-    {
-        for (int i = 0; i < PlayersHolders.Count; i++)
-        {
-            GameManager.Instance.PlayerAdd(PlayersHolders[i].GetComponentInParent<PlayerController>());
 
-        }
-    }
     public void Initialize()
     {
         cardCountText.text = cards.Count.ToString();

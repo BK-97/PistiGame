@@ -45,16 +45,19 @@ public class GameManager : MonoBehaviour
     public static UnityEvent OnRoundReady = new UnityEvent();
     public static UnityEvent OnRoundEnd = new UnityEvent();
     public static UnityEvent OnCardUsed = new UnityEvent();
+    public static UnityEvent OnGameEnd = new UnityEvent();
     public List<GameObject> otherPanels;
-    public List<PlayerController> players;
+    public List<PlayerController> allPlayers;
+    public List<PlayerController> currentPlayers;
     public GameObject gamePanel;
     public int playerCount;
     public int currentPlayIndex;
+    public int currentTurn;
     private void OnEnable()
     {
         OnGameStart.AddListener(GameStartPanels);
         OnCardUsed.AddListener(NextPlayer);
-        OnRoundReady.AddListener(() => players[currentPlayIndex].CanPlay());
+        OnRoundReady.AddListener(() => currentPlayers[currentPlayIndex].CanPlay());
         OnRoundEnd.AddListener(StopAllPlayers);
 
     }
@@ -62,13 +65,22 @@ public class GameManager : MonoBehaviour
     {
         OnGameStart.RemoveListener(GameStartPanels);
         OnCardUsed.RemoveListener(NextPlayer);
-        OnRoundReady.RemoveListener(() => players[currentPlayIndex].CanPlay());
+        OnRoundReady.RemoveListener(() => currentPlayers[currentPlayIndex].CanPlay());
         OnRoundEnd.RemoveListener(StopAllPlayers);
 
     }
     private void GameStartPanels(int playerNumber)
     {
         playerCount = playerNumber;
+        for (int i = 0; i < allPlayers.Count; i++)
+        {
+            allPlayers[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < playerCount; i++)
+        {
+            allPlayers[i].gameObject.SetActive(true);
+            currentPlayers.Add(allPlayers[i]);
+        }
         for (int i = 0; i < otherPanels.Count; i++)
         {
             otherPanels[i].SetActive(false);
@@ -80,24 +92,28 @@ public class GameManager : MonoBehaviour
     }
     private void NextPlayer()
     {
-        players[currentPlayIndex].CantPlay();
+        allPlayers[currentPlayIndex].CantPlay();
+
         if (currentPlayIndex + 1 == playerCount)
+        {
             currentPlayIndex = 0;
+        }
         else
             currentPlayIndex++;
-        players[currentPlayIndex].CanPlay();
+
+        currentTurn++;
+        if (currentTurn == playerCount*4)
+            CardManager.Instance.DealCard();
+        else
+            allPlayers[currentPlayIndex].CanPlay();
 
     }
     private void StopAllPlayers()
     {
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < currentPlayers.Count; i++)
         {
-            players[i].CantPlay();
+            currentPlayers[i].CantPlay();
         }
-    }
-    public void PlayerAdd(PlayerController player)
-    {
-        players.Add(player);
     }
     private void CardManagerInitalize()
     {
