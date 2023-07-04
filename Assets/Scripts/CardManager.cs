@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 public class CardManager : MonoBehaviour
 {
@@ -49,6 +50,11 @@ public class CardManager : MonoBehaviour
     private List<Card> deck;
     public enum CardTypes { Hearts,Clubs,Diamonds,Spades,NUMBER_TYPES }
     private void Start()
+    {
+        if (cardParent.gameObject.activeInHierarchy)
+            Initialize();
+    }
+    public void Initialize()
     {
         deck = new List<Card>();
 
@@ -113,6 +119,8 @@ public class CardManager : MonoBehaviour
     
     private void DealCards()
     {
+        cardParent.GetComponent<CardHolder>().cards = deck;
+        cardParent.GetComponent<CardHolder>().Initialize();
         // Kartlarý oyunculara daðýtmak için gereken iþlemleri gerçekleþtirin
         // Örneðin, her oyuncuya 13 kart vererek baþlayabilirsiniz
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Card : MonoBehaviour
 {
@@ -27,5 +28,9 @@ public class Card : MonoBehaviour
     public void ReverseCard()
     {
         image.gameObject.SetActive(false);
+    }
+    public void Move(Transform targetTransform)
+    {
+        transform.DOMove(targetTransform.position,0.2f).OnComplete(()=>transform.SetParent(targetTransform));
     }
 }

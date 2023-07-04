@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public static IntEvent OnGameStart = new IntEvent();
 
     public List<GameObject> otherPanels;
+    public GameObject gamePanel;
 
     private void OnEnable()
     {
@@ -60,6 +61,12 @@ public class GameManager : MonoBehaviour
         {
             otherPanels[i].SetActive(false);
         }
+        gamePanel.SetActive(true);
+        Invoke("CardManagerInitalize", 0.5f);
+    }
+    private void CardManagerInitalize()
+    {
+        CardManager.Instance.Initialize();
     }
 }
 
