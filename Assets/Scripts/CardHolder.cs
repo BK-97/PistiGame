@@ -7,39 +7,63 @@ public class CardHolder : MonoBehaviour
     public List<Card> cards;
     public Transform playGroundHolder;
     public TextMeshProUGUI cardCountText;
-
+    public List<Transform> PlayersHolders;
     public void Initialize()
     {
         cardCountText.text = cards.Count.ToString();
         CallReverseCards();
     }
+    #region StartDeal
     private IEnumerator CallReverseCardsCoroutine()
     {
         for (int i = 0; i < 3; i++)
         {
-            ReverseCards();
+            cards[0].ReverseCard();
+            MoveOnPlayGroundHolder(cards[0], playGroundHolder);
             yield return new WaitForSeconds(0.2f);
         }
-        MoveOnPlayGroundHolder(cards[0]);
+        MoveOnPlayGroundHolder(cards[0], playGroundHolder);
+        yield return new WaitForSeconds(0.1f);
+        DealToPlayer();
     }
-
     private void CallReverseCards()
     {
         StartCoroutine(CallReverseCardsCoroutine());
     }
-    private void ReverseCards()
+    #endregion
+
+    public void DealToPlayer()
     {
-        cards[0].ReverseCard();
-        MoveOnPlayGroundHolder(cards[0]);
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < PlayersHolders.Count; j++)
+            {
+                if (cards.Count > 0)
+                {
+                    Card card = cards[0];
+                    cards.RemoveAt(0);
+                    if (j != 0)
+                        card.ReverseCard();
+                    StartCoroutine(MoveCardToPlayer(card, PlayersHolders[j] ,(i+1) * 0.2f));
+                }
+            }
+        }
     }
-    private void MoveOnPlayGroundHolder(Card moverCard)
+    private IEnumerator MoveCardToPlayer(Card card, Transform playerHolder, float delay)
     {
-        moverCard.Move(playGroundHolder);
-        RemoveCard(cards[0]);
+        yield return new WaitForSeconds(delay);
+        MoveOnPlayGroundHolder(card, playerHolder);
+
+    }
+    private void MoveOnPlayGroundHolder(Card moverCard,Transform target)
+    {
+        moverCard.Move(target, CardManager.Instance.cardMoveSpeed);
+        RemoveCard(moverCard);
     }
     private void RemoveCard(Card removeThis)
     {
         cards.Remove(removeThis);
         cardCountText.text = cards.Count.ToString();
     }
+
 }

@@ -29,8 +29,8 @@ public class Card : MonoBehaviour
     {
         image.gameObject.SetActive(false);
     }
-    public void Move(Transform targetTransform)
+    public void Move(Transform targetTransform,float moveSpeed)
     {
-        transform.DOMove(targetTransform.position,0.2f).OnComplete(()=>transform.SetParent(targetTransform));
+        transform.DOMove(targetTransform.position, moveSpeed).OnComplete(()=>transform.SetParent(targetTransform));
     }
 }

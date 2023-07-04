@@ -48,6 +48,9 @@ public class CardManager : MonoBehaviour
     public List<Sprite> diamondsCards;
     public List<Sprite> spadesCards;
     private List<Card> deck;
+
+    public float cardMoveSpeed;
+
     public enum CardTypes { Hearts,Clubs,Diamonds,Spades,NUMBER_TYPES }
     private void Start()
     {
