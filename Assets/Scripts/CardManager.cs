@@ -43,6 +43,7 @@ public class CardManager : MonoBehaviour
     #endregion
     public GameObject cardPrefab;
     public Transform cardParent;
+    public Transform playGroundTransform;
     public List<Sprite> heartsCards;
     public List<Sprite> clubsCards;
     public List<Sprite> diamondsCards;
@@ -101,7 +102,7 @@ public class CardManager : MonoBehaviour
     {
         GameObject newCardObject = Instantiate(cardPrefab, cardParent);
         Card newCard = newCardObject.GetComponent<Card>();
-        newCard.Init(type, value, puan);
+        newCard.Init(type, value, puan, playGroundTransform);
 
         deck.Add(newCard);
     }
@@ -124,8 +125,7 @@ public class CardManager : MonoBehaviour
     {
         cardParent.GetComponent<CardHolder>().cards = deck;
         cardParent.GetComponent<CardHolder>().Initialize();
-        // Kartlarý oyunculara daðýtmak için gereken iþlemleri gerçekleþtirin
-        // Örneðin, her oyuncuya 13 kart vererek baþlayabilirsiniz
+
     }
     public Sprite GetCardSprite(int value, CardTypes type)
     {

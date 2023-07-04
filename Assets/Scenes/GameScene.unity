@@ -2463,6 +2463,7 @@ GameObject:
   - component: {fileID: 504232699}
   - component: {fileID: 504232698}
   - component: {fileID: 504232697}
+  - component: {fileID: 504232700}
   m_Layer: 5
   m_Name: BotCardPanel
   m_TagString: Untagged
@@ -2556,6 +2557,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504232695}
   m_CullTransparentMesh: 1
+--- !u!114 &504232700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504232695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa547562bf50744589103fc1a6267c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerType: 1
+  currentDeck: []
+  deckParent: {fileID: 2079709368}
 --- !u!1 &507704616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2711,7 +2727,10 @@ MonoBehaviour:
   - {fileID: 1704415294}
   - {fileID: 1476591301}
   - {fileID: 677263007}
+  players: []
   gamePanel: {fileID: 1127878535}
+  playerCount: 2
+  currentPlayIndex: 0
 --- !u!4 &546558854
 Transform:
   m_ObjectHideFlags: 0
@@ -2741,6 +2760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 3716901052894896623, guid: c72c34925d478bf4bbaedf1df370445b, type: 3}
   cardParent: {fileID: 916963822}
+  playGroundTransform: {fileID: 679076080}
   heartsCards:
   - {fileID: 21300002, guid: dc73f6f7da476394cb4745e344c7b4b0, type: 3}
   - {fileID: 21300002, guid: 23dc1520e84bb7f4aa5bc4738ed6d1a7, type: 3}
@@ -7228,7 +7248,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515001567}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -8400,6 +8420,7 @@ GameObject:
   - component: {fileID: 1868756579}
   - component: {fileID: 1868756578}
   - component: {fileID: 1868756580}
+  - component: {fileID: 1868756581}
   m_Layer: 5
   m_Name: PlayerCardPanel
   m_TagString: Untagged
@@ -8493,6 +8514,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1868756581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868756576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa547562bf50744589103fc1a6267c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerType: 0
+  currentDeck: []
+  deckParent: {fileID: 1947639279}
 --- !u!1 &1900907879
 GameObject:
   m_ObjectHideFlags: 0

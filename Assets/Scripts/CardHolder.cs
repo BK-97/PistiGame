@@ -8,9 +8,28 @@ public class CardHolder : MonoBehaviour
     public Transform playGroundHolder;
     public TextMeshProUGUI cardCountText;
     public List<Transform> PlayersHolders;
+    private void Start()
+    {
+        for (int i = 0; i < PlayersHolders.Count; i++)
+        {
+            GameManager.Instance.PlayerAdd(PlayersHolders[i].GetComponentInParent<PlayerController>());
+
+        }
+    }
     public void Initialize()
     {
         cardCountText.text = cards.Count.ToString();
+
+        List<Transform> tempHolders = new List<Transform>();
+        for (int i = GameManager.Instance.currentPlayIndex; i < PlayersHolders.Count; i++)
+        {
+            tempHolders.Add(PlayersHolders[i]);
+        }
+
+        for (int i = 0; i < GameManager.Instance.currentPlayIndex; i++)
+        {
+            tempHolders.Add(PlayersHolders[i]);
+        }
         CallReverseCards();
     }
     #region StartDeal
@@ -34,6 +53,8 @@ public class CardHolder : MonoBehaviour
 
     public void DealToPlayer()
     {
+        GameManager.OnRoundEnd.Invoke();
+
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < PlayersHolders.Count; j++)
@@ -48,6 +69,12 @@ public class CardHolder : MonoBehaviour
                 }
             }
         }
+        Invoke("DealEnd",1);
+    }
+    private void DealEnd()
+    {
+        GameManager.OnRoundReady.Invoke();
+
     }
     private IEnumerator MoveCardToPlayer(Card card, Transform playerHolder, float delay)
     {
