@@ -3,44 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
-public class CardManager : MonoBehaviour
+public class CardManager : Singleton<CardManager>
 {
-    #region Singleton
-    private static CardManager instance;
-
-    public static CardManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<CardManager>();
-
-                if (instance == null)
-                {
-                    GameObject singletonObject = new GameObject();
-                    instance = singletonObject.AddComponent<CardManager>();
-                    singletonObject.name = "CardManagerSingleton";
-                    DontDestroyOnLoad(singletonObject);
-                }
-            }
-
-            return instance;
-        }
-    }
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    #endregion
     public GameObject cardPrefab;
     public CardHolder cardHolder;
     public Transform playGroundTransform;
@@ -51,6 +15,7 @@ public class CardManager : MonoBehaviour
     private List<Card> deck;
 
     public float cardMoveSpeed;
+    public static UnityEvent OnCardPlayed = new UnityEvent();
 
     public enum CardTypes { Hearts,Clubs,Diamonds,Spades,NUMBER_TYPES }
     private void Start()
@@ -73,7 +38,7 @@ public class CardManager : MonoBehaviour
         }
 
         ShuffleDeck();
-        DealCards();
+        HolderInitialize();
     }
 
     private int GetCardPuan(int value,int type)
@@ -89,7 +54,7 @@ public class CardManager : MonoBehaviour
                     return 0;
             case 10:
                 if (type == 2)
-                    return 10;
+                    return 3;
                 else
                     return 0;
             case 11:
@@ -124,21 +89,23 @@ public class CardManager : MonoBehaviour
     public void DealCard()
     {
         if (cardHolder.cards.Count == 0)
-            GameManager.Instance.OnGameEnd.Invoke();
+        {
+            GameManager.OnCalculateScore.Invoke();
+        }
         else
-            cardHolder.GetComponent<CardHolder>().DealToPlayer();
+            cardHolder.DealToPlayer();
 
     }
-    private void DealCards()
+    private void HolderInitialize()
     {
-        CardHolder holder = cardHolder.GetComponent<CardHolder>();
+        
         for (int i = 0; i < GameManager.Instance.currentPlayers.Count; i++)
         {
-            holder.PlayersHolders.Add(GameManager.Instance.currentPlayers[i].deckParent);
+            cardHolder.PlayersHolders.Add(GameManager.Instance.currentPlayers[i].deckParent);
 
         }
-        holder.cards = deck;
-        holder.Initialize();
+        cardHolder.cards = deck;
+        cardHolder.Initialize();
 
     }
     public Sprite GetCardSprite(int value, CardTypes type)

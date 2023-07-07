@@ -8,18 +8,18 @@ public class CardHolder : MonoBehaviour
     public Transform playGroundHolder;
     public TextMeshProUGUI cardCountText;
     public List<Transform> PlayersHolders;
-
+    public GameLogic gameLogic;
     public void Initialize()
     {
         cardCountText.text = cards.Count.ToString();
 
         List<Transform> tempHolders = new List<Transform>();
-        for (int i = GameManager.Instance.currentPlayIndex; i < PlayersHolders.Count; i++)
+        for (int i = gameLogic.playIndex; i < PlayersHolders.Count; i++)
         {
             tempHolders.Add(PlayersHolders[i]);
         }
 
-        for (int i = 0; i < GameManager.Instance.currentPlayIndex; i++)
+        for (int i = 0; i < gameLogic.playIndex; i++)
         {
             tempHolders.Add(PlayersHolders[i]);
         }
@@ -30,7 +30,7 @@ public class CardHolder : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            cards[0].ReverseCard();
+            cards[0].ReverseCard(true);
             MoveOnPlayGroundHolder(cards[0], playGroundHolder);
             yield return new WaitForSeconds(0.2f);
         }
@@ -48,26 +48,23 @@ public class CardHolder : MonoBehaviour
     {
         GameManager.OnRoundEnd.Invoke();
 
+        List<Card> tempList = new List<Card>(cards);
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < PlayersHolders.Count; j++)
             {
-                if (cards.Count > 0)
+                if (tempList.Count > 0)
                 {
-                    Card card = cards[0];
-                    cards.RemoveAt(0);
+                    Card card = tempList[0];
+                    tempList.RemoveAt(0);
                     if (j != 0)
-                        card.ReverseCard();
+                        card.ReverseCard(true);
+
                     StartCoroutine(MoveCardToPlayer(card, PlayersHolders[j] ,(i+1) * 0.2f));
                 }
             }
         }
-        Invoke("DealEnd",1);
-    }
-    private void DealEnd()
-    {
-        GameManager.OnRoundReady.Invoke();
-
+        Invoke("DealEnd",0.2f*(4*(PlayersHolders.Count)+1 ));
     }
     private IEnumerator MoveCardToPlayer(Card card, Transform playerHolder, float delay)
     {
@@ -79,11 +76,15 @@ public class CardHolder : MonoBehaviour
     {
         moverCard.Move(target, CardManager.Instance.cardMoveSpeed);
         RemoveCard(moverCard);
+
     }
     private void RemoveCard(Card removeThis)
     {
         cards.Remove(removeThis);
         cardCountText.text = cards.Count.ToString();
     }
-
+    private void DealEnd()
+    {
+        GameManager.OnRoundReady.Invoke();
+    }
 }

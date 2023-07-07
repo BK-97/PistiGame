@@ -8,27 +8,90 @@ public class PlayerController : MonoBehaviour
     public PlayerTypes playerType;
     public List<Card> currentDeck;
     public Transform deckParent;
+    public GameLogic gameLogic;
+    public bool canPlay;
+    public Transform collectedDeckParent;
+    public int point;
     public void CardAdd(Card addThis)
     {
         currentDeck.Add(addThis);
+        if (playerType != PlayerTypes.Player)
+            return;
+        addThis.canBeClicked = true;
     }
     public void RemoveCard(Card removeThis)
     {
+        removeThis.canBeClicked = false;
         currentDeck.Remove(removeThis);
+        CanClickOff();
     }
+    public void CanClickOff()
+    {
+        for (int i = 0; i < currentDeck.Count; i++)
+        {
+            currentDeck[i].canBeClicked = false;
+        }
+    }
+    public void CanClickOn()
+    {
 
-    public void CanPlay()
-    {
-        for (int i = 0; i < currentDeck.Count; i++)
+        if (playerType != PlayerTypes.Player)
         {
-            currentDeck[i].canBeUse = true;
+            PlayAI();
         }
+        else
+        {
+            for (int i = 0; i < currentDeck.Count; i++)
+            {
+                currentDeck[i].canBeClicked = true;
+            }
+        }
+
     }
-    public void CantPlay()
+    private void PlayAI()
     {
+        if(gameLogic.playedCards.Count==0)
+        {
+            Card ChoosenCard = null;
+            for (int i = 0; i < currentDeck.Count; i++)
+            {
+                if (currentDeck[i].value != 11)
+                    ChoosenCard = currentDeck[i];
+            }
+            ChoosenCard.ReverseCard(false);
+            ChoosenCard.UseCard();
+        }
+        else
+        {
+            int lastCardValue = gameLogic.playedCards[gameLogic.playedCards.Count - 1].value;
+
+            Card ChoosenCard = HasSameValueCard(lastCardValue);
+            ChoosenCard.ReverseCard(false);
+            ChoosenCard.UseCard();
+        }
+
+    }
+    Card HasSameValueCard(int lastValue)
+    {
+        Card choosenCard =null;
         for (int i = 0; i < currentDeck.Count; i++)
         {
-            currentDeck[i].canBeUse = false;
+            if (currentDeck[i].value == lastValue)
+                choosenCard = currentDeck[i];
         }
+        if (choosenCard != null)
+            return choosenCard;
+        if (choosenCard == null)
+        {
+            for (int i = 0; i < currentDeck.Count; i++)
+            {
+                if (currentDeck[i].value == 11)
+                    choosenCard = currentDeck[i];
+            }
+        }
+        if (choosenCard == null)
+            return currentDeck[0];
+        else
+            return choosenCard;
     }
 }

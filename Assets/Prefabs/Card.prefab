@@ -171,7 +171,7 @@ MonoBehaviour:
   type: 0
   value: 0
   puan: 0
-  canBeUse: 0
+  canBeClicked: 0
   image: {fileID: 8682151588997310125}
   PlayGroundHolder: {fileID: 0}
 --- !u!114 &8482310461064275113
@@ -220,7 +220,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8981033890234280359}
         m_TargetAssemblyTypeName: Card, Assembly-CSharp
-        m_MethodName: UseCard
+        m_MethodName: ClickCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
