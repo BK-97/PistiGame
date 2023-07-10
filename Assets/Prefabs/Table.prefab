@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 7369830734987932355}
   - component: {fileID: 7369830734987932352}
   - component: {fileID: 7369830734987932353}
+  - component: {fileID: 8868637953112416001}
   - component: {fileID: 2243646883621305430}
   m_Layer: 5
   m_Name: CreateTableButton
@@ -392,7 +393,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7369830734987932352}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8868637953112416001}
+        m_TargetAssemblyTypeName: CreateTableButton, Assembly-CSharp
+        m_MethodName: TriggerButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8868637953112416001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369830734987932367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9f0a5cf33a50a4eab32c76f144c1de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2243646883621305430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,6 +754,7 @@ GameObject:
   - component: {fileID: 7369830735909061249}
   - component: {fileID: 7369830735909061262}
   - component: {fileID: 8189800226698944646}
+  - component: {fileID: 3300627130028082977}
   m_Layer: 5
   m_Name: Table
   m_TagString: Untagged
@@ -824,6 +850,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3300627130028082977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369830735909061260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f96996fa7a95d45a5690d4467ca67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 7369830735389412275}
+  - {fileID: 7369830734987932353}
+  maxBet: 0
+  minBet: 0
+  betText: {fileID: 7369830734612781526}
 --- !u!1 &7369830736307227578
 GameObject:
   m_ObjectHideFlags: 0

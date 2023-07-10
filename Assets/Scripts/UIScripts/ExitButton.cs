@@ -15,4 +15,8 @@ public class ExitButton : MonoBehaviour
         currentPanel.SetActive(false);
         nextPanel.SetActive(true);
     }
+    public void BackToMenu()
+    {
+        GameManager.Instance.RestartGame();
+    }
 }

@@ -18,13 +18,17 @@ public class ScoreBoardController : MonoBehaviour
 
     public void SetBoard(List<PlayerController> playerControllers)
     {
-        Debug.Log(playerControllers[0].name);
         ShowBoard();
         for (int i = 0; i < playerControllers.Count; i++)
         {
             boardNames[i].text =playerControllers[i].playerType.ToString();
             scores[i].text =playerControllers[i].point.ToString();
         }
+        if (playerControllers[0].playerType == PlayerController.PlayerTypes.Player)
+            GameManager.OnPlayerWin.Invoke(true);
+        else
+            GameManager.OnPlayerLose.Invoke(false);
+
     }
     public void ShowBoard()
     {

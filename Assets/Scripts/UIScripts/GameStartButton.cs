@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class GameStartButton : MonoBehaviour
 {
-    public int playerCount = 2;
-    public void StartGame()
+    private TableCreator tableCreator;
+    int playerCount=2;
+    private int bet;
+    public void SetTableCreatorParent(TableCreator creator)
     {
-        GameManager.OnGameStart.Invoke(playerCount);
+        tableCreator = creator;
+        bet = tableCreator.currentBet;
+        playerCount = tableCreator.currentPlayerCount;
+        StartGame();
     }
-    public void ChangePlayerCount(int currentCount)
+    private void StartGame()
     {
-        playerCount = currentCount;
+        GameManager.OnGameStart.Invoke(playerCount, bet);
     }
+
 }

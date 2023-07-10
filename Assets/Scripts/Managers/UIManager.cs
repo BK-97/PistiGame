@@ -22,9 +22,13 @@ public class UIManager : Singleton<UIManager>
         {
             case GameManager.GameStatus.Menu:
                 menuPanel.SetActive(true);
+                gamePanel.SetActive(false);
+                createTablePanel.SetActive(false);
+                scoreBoardPanel.SetActive(false);
                 break;
             case GameManager.GameStatus.WaitForPlay:
                 menuPanel.SetActive(false);
+                createTablePanel.SetActive(false);
                 gamePanel.SetActive(true);
                 break;
             case GameManager.GameStatus.Play:
@@ -37,6 +41,13 @@ public class UIManager : Singleton<UIManager>
             default:
                 break;
         }
+    }
+    public void CreateTablePanel(int minBet,int maxBet)
+    {
+        createTablePanel.SetActive(true);
+        createTablePanel.GetComponent<TableCreator>().BetSetter(minBet, maxBet);
+        menuPanel.SetActive(false);
+
     }
     public void OffPlayerChairs()
     {
