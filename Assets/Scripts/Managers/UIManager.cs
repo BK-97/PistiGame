@@ -59,14 +59,11 @@ public class UIManager : Singleton<UIManager>
             playerChairs[i].SetActive(false);
         }
     }
-    public List<PlayerController> OnPlayerChairs(int playerCount)
+    public void OnPlayerChairs(int playerCount)
     {
-        List<PlayerController> newPlayers=new List<PlayerController>();
         for (int i = 0; i < playerCount; i++)
         {
             playerChairs[i].SetActive(true);
-            newPlayers.Add(playerChairs[i].GetComponent<PlayerController>());
         }
-        return newPlayers;
     }
 }

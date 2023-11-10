@@ -16,10 +16,11 @@ public class GameLogic : MonoBehaviour
     private int currentTurn;
     private int lastCollectIndex;
     #endregion
-    public void Initialize(int currentPlayerCount,List<PlayerController> currentPlayers)
+    public void Initialize(int currentPlayerCount, List<PlayerController> currentPlayers)
     {
         playerCount = currentPlayerCount;
-        playIndex = Random.Range(0,playerCount-1);
+
+        playIndex = Random.Range(0, playerCount - 1);
         Players = currentPlayers;
         for (int i = 0; i < Players.Count; i++)
         {
@@ -28,14 +29,12 @@ public class GameLogic : MonoBehaviour
     }
     private void OnEnable()
     {
-        CardManager.OnCardPlayed.AddListener(NextPlayer);
         GameManager.OnRoundReady.AddListener(ReadyToPlay);
         GameManager.OnCalculateScore.AddListener(CalculateScore);
-        
+
     }
     private void OnDisable()
     {
-        CardManager.OnCardPlayed.RemoveListener(NextPlayer);
         GameManager.OnRoundReady.RemoveListener(ReadyToPlay);
         GameManager.OnCalculateScore.RemoveListener(CalculateScore);
 
@@ -44,19 +43,16 @@ public class GameLogic : MonoBehaviour
     {
         card.transform.SetParent(transform, false);
         playedCards.Add(card);
-        
-        if(isRoundReady)
-            CalculateWinLose();
+
+        if (!isRoundReady)
+            return;
+        CalculateWinLose();
+        NextPlayer();
+
     }
     bool isRoundReady;
     private void NextPlayer()
     {
-
-        Players[playIndex].canPlay=false;
-        for (int i = 0; i < Players.Count; i++)
-        {
-            Players[i].CanClickOff();
-        }
         if (playIndex + 1 == playerCount)
         {
             playIndex = 0;
@@ -80,7 +76,7 @@ public class GameLogic : MonoBehaviour
     {
         isRoundReady = true;
         Players[playIndex].CanClickOn();
-        Players[playIndex].canPlay=true;
+        Players[playIndex].canPlay = true;
 
     }
     #region WinLose
@@ -94,7 +90,7 @@ public class GameLogic : MonoBehaviour
 
         Card previouseCard = playedCards[playedCards.Count - 2];
         Card currentCard = playedCards[playedCards.Count - 1];
-        if (CheckPisti(previouseCard,currentCard))
+        if (CheckPisti(previouseCard, currentCard))
             PistiWin();
         else
         {
@@ -102,21 +98,20 @@ public class GameLogic : MonoBehaviour
             {
                 MoveAllCardToWinner(playIndex);
             }
-            else if(currentCard.value==11)
+            else if (currentCard.value == 11)
             {
                 MoveAllCardToWinner(playIndex);
             }
         }
-        CardManager.OnCardPlayed.Invoke();
     }
 
-    private bool CheckPisti(Card previousCard,Card currentCard)
+    private bool CheckPisti(Card previousCard, Card currentCard)
     {
         if (playedCards.Count == 2)
         {
             if (previousCard.value == currentCard.value)
                 return true;
-            
+
         }
         return false;
     }

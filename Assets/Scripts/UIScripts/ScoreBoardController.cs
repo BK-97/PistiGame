@@ -33,14 +33,14 @@ public class ScoreBoardController : MonoBehaviour
     }
     public void ShowBoard()
     {
-        for (int i = 0; i < GameManager.Instance.currentPlayerCount; i++)
+        for (int i = 0; i < GameManager.Instance.currentPlayers.Count; i++)
         {
             boardMembers[i].gameObject.SetActive(true);
         }
     }
     private void SpawnBoardMembers()
     {
-        for (int i = 0; i < GameManager.Instance.currentPlayerCount; i++)
+        for (int i = 0; i < GameManager.Instance.currentPlayers.Count; i++)
         {
             var go=Instantiate(boardMemberPrefab, boardMembersParent);
             boardMembers.Add(go.GetComponent<BoardMember>());

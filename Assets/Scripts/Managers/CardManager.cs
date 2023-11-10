@@ -17,7 +17,7 @@ public class CardManager : Singleton<CardManager>
     public float cardMoveSpeed;
     public static UnityEvent OnCardPlayed = new UnityEvent();
 
-    public enum CardTypes { Hearts,Clubs,Diamonds,Spades,NUMBER_TYPES }
+    public enum CardTypes { Hearts, Clubs, Diamonds, Spades, NUMBER_TYPES }
     private void Start()
     {
         if (cardHolder.gameObject.activeInHierarchy)
@@ -41,7 +41,7 @@ public class CardManager : Singleton<CardManager>
         HolderInitialize();
     }
 
-    private int GetCardPuan(int value,int type)
+    private int GetCardPuan(int value, int type)
     {
         switch (value)
         {
@@ -65,7 +65,7 @@ public class CardManager : Singleton<CardManager>
 
     private void CreateCard(CardTypes type, int value, int puan)
     {
-        GameObject newCardObject = Instantiate(cardPrefab, cardHolder.gameObject.transform);
+        GameObject newCardObject = Instantiate(cardPrefab, cardHolder.cardParent);
         Card newCard = newCardObject.GetComponent<Card>();
         newCard.Init(type, value, puan, playGroundTransform);
 
@@ -98,11 +98,9 @@ public class CardManager : Singleton<CardManager>
     }
     private void HolderInitialize()
     {
-        
         for (int i = 0; i < GameManager.Instance.currentPlayers.Count; i++)
         {
             cardHolder.PlayersHolders.Add(GameManager.Instance.currentPlayers[i].deckParent);
-
         }
         cardHolder.cards = deck;
         cardHolder.Initialize();

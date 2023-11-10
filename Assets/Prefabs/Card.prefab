@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7918551332873798830}
   - component: {fileID: 5410633905846445778}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BackSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3716901052894896622}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -108,8 +108,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7818420096228461124}
   - {fileID: 2134655256341874033}
+  - {fileID: 7818420096228461124}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,9 +170,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   value: 0
-  puan: 0
+  point: 0
   canBeClicked: 0
-  image: {fileID: 8682151588997310125}
+  frontSide: {fileID: 8682151588997310125}
+  backSide: {fileID: 2576725038171209889}
   PlayGroundHolder: {fileID: 0}
 --- !u!114 &8482310461064275113
 MonoBehaviour:
@@ -242,7 +243,7 @@ GameObject:
   - component: {fileID: 5353798076342262515}
   - component: {fileID: 8682151588997310125}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: FrontSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +262,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3716901052894896622}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

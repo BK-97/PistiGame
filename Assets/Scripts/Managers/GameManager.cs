@@ -25,12 +25,10 @@ public class GameManager : Singleton<GameManager>
     public TextMeshProUGUI betText;
 
     [HideInInspector]
-    public bool isGameStarted;
-    [HideInInspector]
-    public int currentPlayerCount;
-    [HideInInspector]
     public int currentBet;
 
+    public List<PlayerController> FourPlayers;
+    public List<PlayerController> TwoPlayers;
     [HideInInspector]
     public List<PlayerController> currentPlayers;
     [HideInInspector]
@@ -61,14 +59,16 @@ public class GameManager : Singleton<GameManager>
     {
         ChangeGameStatus(GameStatus.WaitForPlay);
         currentBet = bet;
-        currentPlayers = UIManager.Instance.OnPlayerChairs(playerNumber);
         betText.text = "BET: " + currentBet;
         UIManager.Instance.PanelOnOff(gameStatus);
 
         Invoke("CardManagerInitalize", 0.5f);
+        if (playerNumber == 2)
+            currentPlayers = TwoPlayers;
+        else
+            currentPlayers = FourPlayers;
+        UIManager.Instance.OnPlayerChairs(currentPlayers.Count);
         GameLogic.Initialize(playerNumber, currentPlayers);
-        currentPlayerCount = playerNumber;
-        isGameStarted = true;
 
     }
     private void ChangeGameStatus(GameStatus newStatus)

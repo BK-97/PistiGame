@@ -15,8 +15,11 @@ public class PlayerController : MonoBehaviour
     public void CardAdd(Card addThis)
     {
         currentDeck.Add(addThis);
+        addThis.gameObject.transform.localRotation = Quaternion.identity;
+
         if (playerType != PlayerTypes.Player)
             return;
+
         addThis.canBeClicked = true;
     }
     public void RemoveCard(Card removeThis)
@@ -34,7 +37,6 @@ public class PlayerController : MonoBehaviour
     }
     public void CanClickOn()
     {
-
         if (playerType != PlayerTypes.Player)
         {
             PlayAI();
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (currentDeck[i].value != 11)
                     ChoosenCard = currentDeck[i];
-            }
+            } 
             ChoosenCard.ReverseCard(false);
             ChoosenCard.UseCard();
         }
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
             ChoosenCard.UseCard();
         }
 
+        CanClickOff();
     }
     Card HasSameValueCard(int lastValue)
     {

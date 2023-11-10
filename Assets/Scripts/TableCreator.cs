@@ -73,6 +73,5 @@ public class TableCreator : MonoBehaviour
     public void CreateTable()
     {
         GetComponentInChildren<GameStartButton>().SetTableCreatorParent(this);
-
     }
 }

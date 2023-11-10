@@ -9,7 +9,8 @@ public class Card : MonoBehaviour
     public int value;
     public int point;
     public bool canBeClicked;
-    public Image image;
+    public Image frontSide;
+    public GameObject backSide;
     public Transform PlayGroundHolder;
     public void Init(CardManager.CardTypes cardType, int cardValue, int cardPuan,Transform playGround)
     {
@@ -22,20 +23,24 @@ public class Card : MonoBehaviour
 
     private void UpdateCardSprite()
     {
-        image.sprite=CardManager.Instance.GetCardSprite(value,type);
+        frontSide.sprite=CardManager.Instance.GetCardSprite(value,type);
     }
     public void ReverseCard(bool reverse)
     {
-        image.gameObject.SetActive(!reverse);
+        backSide.SetActive(reverse);
     }
-    public void Move(Transform targetTransform,float moveSpeed)
+    public void Move(Transform targetTransform,float moveSpeed,bool isReversed)
     {
-        transform.DOMove(targetTransform.position, moveSpeed).OnComplete(() => AddDeck(targetTransform));
+        transform.DOMove(targetTransform.position, moveSpeed).OnComplete(() => CardMoveEnd(isReversed,targetTransform));
+    }
+    private void CardMoveEnd(bool isReversed,Transform targetTransform)
+    {
+        ReverseCard(isReversed);
+        AddDeck(targetTransform);
     }
     public void MoveToCollectedDecks(Transform targetTransform)
     {
         transform.DOMove(targetTransform.position, 0.2f).OnComplete(() => transform.SetParent(targetTransform));
-
     }
     private void AddDeck(Transform parentTransform)
     {
@@ -56,9 +61,17 @@ public class Card : MonoBehaviour
         canBeClicked = false;
         UseCard();
     }
+    private void RandomRotate(float rotateTime)
+    {
+        float randomAngle = Random.Range(-180f, 180f);
+        transform.DORotate(new Vector3(0f, 0f, randomAngle), rotateTime, RotateMode.Fast)
+            .SetEase(Ease.Linear);
+    }
     public void UseCard()
     {
-        Move(PlayGroundHolder,0.5f);
+        float moveSpeed = 0.5f;
+        Move(PlayGroundHolder, moveSpeed, false);
+        RandomRotate(moveSpeed);
         GetComponentInParent<PlayerController>().RemoveCard(this);
     }
 }
