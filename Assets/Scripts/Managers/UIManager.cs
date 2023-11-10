@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-
+    #region Params
+    [Header("Panels")]
     public GameObject menuPanel;
     public GameObject playerInfoPanel;
     public GameObject createTablePanel;
     public GameObject gamePanel;
-    public List<GameObject> playerChairs;
     public GameObject scoreBoardPanel;
 
+    [Header("PlayerChairs")]
+    public List<GameObject> playerChairs;
+    #endregion
     private void Start()
     {
         OffPlayerChairs();

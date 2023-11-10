@@ -4,9 +4,10 @@ using UnityEngine;
 using TMPro;
 public class ScoreBoardController : MonoBehaviour
 {
-    public List<GameObject> boardMembers;
-    public List<TextMeshProUGUI> boardNames;
-    public List<TextMeshProUGUI> scores;
+    [SerializeField]
+    private List<BoardMember> boardMembers=new List<BoardMember>();
+    public GameObject boardMemberPrefab;
+    public Transform boardMembersParent;
     private void OnEnable()
     {
         GameManager.ScoreBoardEvent.AddListener(SetBoard);
@@ -18,23 +19,31 @@ public class ScoreBoardController : MonoBehaviour
 
     public void SetBoard(List<PlayerController> playerControllers)
     {
-        ShowBoard();
+        SpawnBoardMembers();
         for (int i = 0; i < playerControllers.Count; i++)
         {
-            boardNames[i].text =playerControllers[i].playerType.ToString();
-            scores[i].text =playerControllers[i].point.ToString();
+            boardMembers[i].SetInfo(i+1, playerControllers[i].playerType.ToString(), playerControllers[i].point);
         }
+        ShowBoard();
+
         if (playerControllers[0].playerType == PlayerController.PlayerTypes.Player)
             GameManager.OnPlayerWin.Invoke(true);
         else
             GameManager.OnPlayerLose.Invoke(false);
-
     }
     public void ShowBoard()
     {
         for (int i = 0; i < GameManager.Instance.currentPlayerCount; i++)
         {
-            boardMembers[i].SetActive(true);
+            boardMembers[i].gameObject.SetActive(true);
+        }
+    }
+    private void SpawnBoardMembers()
+    {
+        for (int i = 0; i < GameManager.Instance.currentPlayerCount; i++)
+        {
+            var go=Instantiate(boardMemberPrefab, boardMembersParent);
+            boardMembers.Add(go.GetComponent<BoardMember>());
         }
     }
 }

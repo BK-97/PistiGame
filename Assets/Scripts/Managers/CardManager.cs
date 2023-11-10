@@ -6,7 +6,7 @@ using System;
 public class CardManager : Singleton<CardManager>
 {
     public GameObject cardPrefab;
-    public CardHolder cardHolder;
+    public CardDealer cardHolder;
     public Transform playGroundTransform;
     public List<Sprite> heartsCards;
     public List<Sprite> clubsCards;

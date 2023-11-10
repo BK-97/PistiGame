@@ -13,7 +13,7 @@ public class TableController : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt(PrefsKeys.Cash, 1000) < minBet)
+        if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) < minBet)
             CloseAllButtons();
         else
             OpenAllButtons();

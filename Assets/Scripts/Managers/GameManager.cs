@@ -13,62 +13,77 @@ public class GameManager : Singleton<GameManager>
     public static UnityEvent OnRoundEnd = new UnityEvent();
     public static UnityEvent OnCalculateScore = new UnityEvent();
     public static UnityEvent OnGameEnd = new UnityEvent();
+    public static UnityEvent OnGameStatusChanged = new UnityEvent();
     public static BoolEvent OnPlayerWin = new BoolEvent();
     public static BoolEvent OnPlayerLose = new BoolEvent();
     #endregion
-    public enum GameStatus { Menu,WaitForPlay, Play ,ScoreBoard}
+    public enum GameStatus { Menu, WaitForPlay, Play, ScoreBoard }
+    [HideInInspector]
     public GameStatus gameStatus;
+
+    public GameLogic GameLogic;
+    public TextMeshProUGUI betText;
+
+    [HideInInspector]
+    public bool isGameStarted;
+    [HideInInspector]
+    public int currentPlayerCount;
+    [HideInInspector]
+    public int currentBet;
+
     [HideInInspector]
     public List<PlayerController> currentPlayers;
-    public GameLogic GameLogic;
-    public bool isGameStarted;
-    public int currentPlayerCount;
-    public int currentBet;
-    public TextMeshProUGUI betText;
+    [HideInInspector]
+    public int currentWinCount;
+    [HideInInspector]
+    public int currentLoseCount;
     private void OnEnable()
     {
         OnGameStart.AddListener(GameStartPanels);
-        OnRoundEnd.AddListener(() => gameStatus = GameStatus.WaitForPlay);
-        OnRoundReady.AddListener(()=>gameStatus=GameStatus.Play);
+        OnRoundEnd.AddListener(() => ChangeGameStatus(GameStatus.WaitForPlay));
+        OnRoundReady.AddListener(() => ChangeGameStatus(GameStatus.Play));
         OnGameEnd.AddListener(EndGame);
         OnPlayerWin.AddListener(PlayerWinLose);
         OnPlayerLose.AddListener(PlayerWinLose);
-
+        OnGameStatusChanged.AddListener(StopAllPlayers);
     }
     private void OnDisable()
     {
         OnGameStart.RemoveListener(GameStartPanels);
-        OnRoundEnd.RemoveListener(() => gameStatus = GameStatus.WaitForPlay);
-        OnRoundReady.RemoveListener(() => gameStatus = GameStatus.Play);
+        OnRoundEnd.RemoveListener(() => ChangeGameStatus(GameStatus.WaitForPlay));
+        OnRoundReady.RemoveListener(() => ChangeGameStatus(GameStatus.Play));
         OnGameEnd.RemoveListener(EndGame);
         OnPlayerWin.RemoveListener(PlayerWinLose);
         OnPlayerLose.RemoveListener(PlayerWinLose);
-
+        OnGameStatusChanged.RemoveListener(StopAllPlayers);
     }
-    private void GameStartPanels(int playerNumber,int bet)
+    private void GameStartPanels(int playerNumber, int bet)
     {
-        gameStatus = GameStatus.WaitForPlay;
+        ChangeGameStatus(GameStatus.WaitForPlay);
         currentBet = bet;
-        currentPlayers =UIManager.Instance.OnPlayerChairs(playerNumber);
+        currentPlayers = UIManager.Instance.OnPlayerChairs(playerNumber);
         betText.text = "BET: " + currentBet;
         UIManager.Instance.PanelOnOff(gameStatus);
 
         Invoke("CardManagerInitalize", 0.5f);
         GameLogic.Initialize(playerNumber, currentPlayers);
-        currentPlayerCount= playerNumber;
+        currentPlayerCount = playerNumber;
         isGameStarted = true;
 
     }
-    private void Update()
+    private void ChangeGameStatus(GameStatus newStatus)
     {
-        if (gameStatus == GameStatus.WaitForPlay)
-            StopAllPlayers();
+        gameStatus = newStatus;
+        OnGameStatusChanged.Invoke();
     }
     private void StopAllPlayers()
     {
+        if (gameStatus != GameStatus.WaitForPlay)
+            return;
+
         for (int i = 0; i < currentPlayers.Count; i++)
         {
-            currentPlayers[i].canPlay=false;
+            currentPlayers[i].canPlay = false;
         }
     }
     private void CardManagerInitalize()
@@ -77,11 +92,9 @@ public class GameManager : Singleton<GameManager>
     }
     public void EndGame()
     {
-        gameStatus = GameStatus.ScoreBoard;
+        ChangeGameStatus(GameStatus.ScoreBoard);
         UIManager.Instance.PanelOnOff(gameStatus);
         ScoreBoardEvent.Invoke(SortPlayersByPoint());
-
-
     }
     public List<PlayerController> SortPlayersByPoint()
     {
@@ -92,32 +105,27 @@ public class GameManager : Singleton<GameManager>
 
     private void PlayerWinLose(bool isWin)
     {
-        if(isWin)  
+        if (isWin)
         {
-            PlayerPrefs.SetInt(PrefsKeys.WinCount,PlayerPrefs.GetInt(PrefsKeys.WinCount,0)+1);
-            PlayerPrefs.SetInt(PrefsKeys.Cash,PlayerPrefs.GetInt(PrefsKeys.Cash,1000)+currentBet);
-
+            PlayerPrefs.SetInt(PrefsKeys.WinCount, PlayerPrefs.GetInt(PrefsKeys.WinCount, 0) + 1);
+            ExchangeManager.Instance.AddCurrency(CurrencyType.Cash, currentBet);
         }
         else
         {
             PlayerPrefs.SetInt(PrefsKeys.LoseCount, PlayerPrefs.GetInt(PrefsKeys.LoseCount, 0) + 1);
-            if(PlayerPrefs.GetInt(PrefsKeys.Cash, 1000) - currentBet<0)
-                PlayerPrefs.SetInt(PrefsKeys.Cash, 0);
-            else
-                PlayerPrefs.SetInt(PrefsKeys.Cash, PlayerPrefs.GetInt(PrefsKeys.Cash, 1000) - currentBet);
-
+            ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, currentBet);
         }
-
+        currentWinCount = PlayerPrefs.GetInt(PrefsKeys.WinCount, 0);
+        currentLoseCount = PlayerPrefs.GetInt(PrefsKeys.LoseCount, 0);
     }
     public void RestartGame()
     {
-        gameStatus = GameStatus.Menu;
+        ChangeGameStatus(GameStatus.Menu);
         UIManager.Instance.PanelOnOff(gameStatus);
-        
     }
 }
 
 public class IntEvent : UnityEvent<int> { }
-public class IntIntEvent : UnityEvent<int,int> { }
+public class IntIntEvent : UnityEvent<int, int> { }
 public class BoolEvent : UnityEvent<bool> { }
 public class ListEvent : UnityEvent<List<PlayerController>> { }

@@ -5,25 +5,32 @@ using TMPro;
 using UnityEngine.UI;
 public class TableCreator : MonoBehaviour
 {
+    #region Params
+    [Header("Texts")]
     public TextMeshProUGUI minText;
     public TextMeshProUGUI maxText;
     public TextMeshProUGUI currentText;
 
+    [Space(5)]
+    [Header("BetInfos")]
+    public Slider slider;
+    [HideInInspector]
+    public int currentBet;
     private int minBet;
     private int maxBet;
-    private int cash;
-    public int currentBet;
-    public Slider slider;
-    
 
+    [Space(5)]
+    [Header("Selection Area")]
     public Button twoPlayer;
     public Button fourPlayer;
-    private Button lastSelectedButton;
-    public int currentPlayerCount;
 
+    [HideInInspector]
+    public int currentPlayerCount;
+    private Button lastSelectedButton;
+
+    #endregion
     void Start()
     {
-        cash = PlayerPrefs.GetInt(PrefsKeys.Cash,1000);
         OnButtonSelected(twoPlayer);
     }
     public void BetSetter(int minbet,int maxbet)
@@ -43,8 +50,8 @@ public class TableCreator : MonoBehaviour
     }
     void Update()
     {
-        if (slider.value > cash)
-            slider.value = cash;
+        if (slider.value > ExchangeManager.Instance.GetCurrency(CurrencyType.Cash))
+            slider.value = ExchangeManager.Instance.GetCurrency(CurrencyType.Cash);
         currentBet = (int)slider.value;
         currentText.text = currentBet.ToString();
     }

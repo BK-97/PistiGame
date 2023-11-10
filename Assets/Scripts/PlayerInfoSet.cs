@@ -4,30 +4,21 @@ using UnityEngine;
 using TMPro;
 public class PlayerInfoSet : MonoBehaviour
 {
-    public TextMeshProUGUI cashText;
-    public TextMeshProUGUI winText;
-    public TextMeshProUGUI loseText;
+    [SerializeField]
+    private TextMeshProUGUI playerName;
+    [SerializeField]
+    private TextMeshProUGUI playerCash;
     private void OnEnable()
     {
-        GameManager.OnPlayerWin.AddListener(UpdateText);
-        GameManager.OnPlayerLose.AddListener(UpdateText);
+        ExchangeManager.Instance.OnCurrencyChange.AddListener(SetInfo);
     }
     private void OnDisable()
     {
-        GameManager.OnPlayerWin.RemoveListener(UpdateText);
-        GameManager.OnPlayerLose.RemoveListener(UpdateText);
+        ExchangeManager.Instance.OnCurrencyChange.AddListener(SetInfo);
     }
-    private void Start()
+    private void SetInfo(Dictionary<CurrencyType,int> newCurrency)
     {
-        UpdateText(true);
+        playerName.text = PlayerPrefs.GetString(PrefsKeys.PlayerName, "Player");
+        playerCash.text = newCurrency[CurrencyType.Cash].ToString();
     }
-    private void UpdateText(bool status)
-    {
-        cashText.text = PlayerPrefs.GetInt(PrefsKeys.Cash, 1000).ToString();
-        if (winText != null)
-            winText.text = PlayerPrefs.GetInt(PrefsKeys.WinCount, 0).ToString();
-        if (loseText != null)
-            loseText.text = PlayerPrefs.GetInt(PrefsKeys.LoseCount, 0).ToString();
-    }
-
 }
