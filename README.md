@@ -6,13 +6,14 @@ A Pisti game with a game mode for 2 or 4 players.
 
 #Pictures
 
-![PistiGithub1](https://github.com/BK-97/PistiGame/assets/59361739/c16a21d5-764f-4929-ab34-e8f66709c5d5)
+![GithubPic4](https://github.com/BK-97/PistiGame/assets/59361739/f86a6323-0422-45b5-912d-302dcada8e80)
 
-![image_0002](https://github.com/BK-97/PistiGame/assets/59361739/e4d92ad2-8d5e-4015-a366-e58a03a0508a)
+![GithubPic3](https://github.com/BK-97/PistiGame/assets/59361739/8dfcabf0-fdef-4f17-b1ac-e4ef3710d13d)
 
-![image_0009](https://github.com/BK-97/PistiGame/assets/59361739/60e9799f-0c7b-44ad-a2fd-69a57b6d140d)
+![GithubPic2](https://github.com/BK-97/PistiGame/assets/59361739/919a1f2c-e31a-4fca-8eb2-cc74b8f4ec53)
 
-![image_0000](https://github.com/BK-97/PistiGame/assets/59361739/a9b5333d-3917-4692-a825-ccb86ce9ccf0)
+![GithubPic1](https://github.com/BK-97/PistiGame/assets/59361739/d6a0a742-283d-4cd8-97fd-4b2b54cc60f1)
+
 
 ---
 
