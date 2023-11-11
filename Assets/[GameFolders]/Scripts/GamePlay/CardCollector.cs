@@ -41,7 +41,7 @@ public class CardCollector : MonoBehaviour
         int currentPoint=0;
         for (int i = 0; i < collectedCards.Count; i++)
         {
-            currentPoint += collectedCards[i].point;
+            currentPoint += collectedCards[i].GetPoint();
         }
         point = currentPoint;
         textMesh.text ="SCORE : "+ point.ToString();

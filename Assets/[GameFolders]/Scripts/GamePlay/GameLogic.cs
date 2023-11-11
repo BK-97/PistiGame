@@ -46,9 +46,10 @@ public class GameLogic : MonoBehaviour
 
         if (!isRoundReady)
             return;
-        CalculateWinLose();
-        NextPlayer();
-
+        if (playedCards.Count > 1)
+            CalculateWinLose();
+        else
+            NextPlayer();
     }
     bool isRoundReady;
     private void NextPlayer()
@@ -82,29 +83,34 @@ public class GameLogic : MonoBehaviour
     #region WinLose
     private void CalculateWinLose()
     {
-        if (playedCards.Count == 1)
-        {
-            CardManager.OnCardPlayed.Invoke();
-            return;
-        }
-
         Card previouseCard = playedCards[playedCards.Count - 2];
         Card currentCard = playedCards[playedCards.Count - 1];
+
         if (CheckPisti(previouseCard, currentCard))
-            PistiWin();
+        {
+            previouseCard.PistiPoint();
+            currentCard.PistiPoint();
+            StartCoroutine(WaitForSendCardToWinner());
+            return;
+        }
         else
         {
-            if (previouseCard.value == currentCard.value)
+            if (previouseCard.value == currentCard.value || currentCard.value == 11)
             {
-                MoveAllCardToWinner(playIndex);
+                StartCoroutine(WaitForSendCardToWinner());
+                return;
             }
-            else if (currentCard.value == 11)
-            {
-                MoveAllCardToWinner(playIndex);
-            }
-        }
-    }
 
+        }
+        NextPlayer();
+    }
+    IEnumerator WaitForSendCardToWinner()
+    {
+        yield return new WaitForSeconds(0.5f);
+        MoveAllCardToWinner(playIndex);
+        NextPlayer();
+
+    }
     private bool CheckPisti(Card previousCard, Card currentCard)
     {
         if (playedCards.Count == 2)
@@ -115,13 +121,6 @@ public class GameLogic : MonoBehaviour
         }
         return false;
     }
-    private void PistiWin()
-    {
-        playedCards[0].point += 5;
-        playedCards[1].point += 5;
-        MoveAllCardToWinner(playIndex);
-
-    }
     private void MoveAllCardToWinner(int playIndex)
     {
         for (int i = 0; i < playedCards.Count; i++)
@@ -131,6 +130,7 @@ public class GameLogic : MonoBehaviour
         lastCollectIndex = playIndex;
 
         playedCards.Clear();
+
     }
     private void CalculateScore()
     {

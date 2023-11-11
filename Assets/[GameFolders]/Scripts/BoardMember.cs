@@ -15,5 +15,11 @@ public class BoardMember : MonoBehaviour
         playerIndex.text = index.ToString() + ".";
         playerName.text = name;
         playerScore.text = score.ToString();
+        if (name == "Player")
+        {
+            playerIndex.color = Color.green;
+            playerName.color = Color.green;
+            playerScore.color = Color.green;
+        }
     }
 }

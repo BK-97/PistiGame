@@ -7,7 +7,7 @@ public class Card : MonoBehaviour
 {
     public CardManager.CardTypes type;
     public int value;
-    public int point;
+    private int point;
     public bool canBeClicked;
     public Image frontSide;
     public GameObject backSide;
@@ -73,5 +73,13 @@ public class Card : MonoBehaviour
         Move(PlayGroundHolder, moveSpeed, false);
         RandomRotate(moveSpeed);
         GetComponentInParent<PlayerController>().RemoveCard(this);
+    }
+    public void PistiPoint()
+    {
+        point += 5;
+    }
+    public int GetPoint()
+    {
+        return point;
     }
 }
