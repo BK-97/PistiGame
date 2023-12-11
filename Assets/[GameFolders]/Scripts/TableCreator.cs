@@ -47,6 +47,7 @@ public class TableCreator : MonoBehaviour
         slider.maxValue = maxBet;
         slider.value = (slider.minValue + slider.maxValue) * 0.5f;
         currentBet= (int)((slider.minValue + slider.maxValue) * 0.5f);
+        Debug.Log(currentBet);
     }
     void Update()
     {
@@ -72,6 +73,6 @@ public class TableCreator : MonoBehaviour
     }
     public void CreateTable()
     {
-        GetComponentInChildren<GameStartButton>().SetTableCreatorParent(this);
+        GetComponentInChildren<TableCreateButton>().SetTableCreatorParent(this);
     }
 }

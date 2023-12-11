@@ -1080,6 +1080,10 @@ PrefabInstance:
       propertyPath: minBet
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3300627130028082977, guid: 99542adf42371dd43b80e29d388a5eba, type: 3}
+      propertyPath: tableNameText
+      value: Rookie Table
+      objectReference: {fileID: 0}
     - target: {fileID: 4262578433224172387, guid: 99542adf42371dd43b80e29d388a5eba, type: 3}
       propertyPath: bet
       value: 500
@@ -1273,6 +1277,10 @@ PrefabInstance:
     - target: {fileID: 3300627130028082977, guid: 99542adf42371dd43b80e29d388a5eba, type: 3}
       propertyPath: minBet
       value: 1001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300627130028082977, guid: 99542adf42371dd43b80e29d388a5eba, type: 3}
+      propertyPath: tableNameText
+      value: Pro Table
       objectReference: {fileID: 0}
     - target: {fileID: 4262578433224172387, guid: 99542adf42371dd43b80e29d388a5eba, type: 3}
       propertyPath: bet
@@ -1483,6 +1491,10 @@ PrefabInstance:
     - target: {fileID: 3300627130028082977, guid: 99542adf42371dd43b80e29d388a5eba, type: 3}
       propertyPath: minBet
       value: 3001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300627130028082977, guid: 99542adf42371dd43b80e29d388a5eba, type: 3}
+      propertyPath: tableNameText
+      value: King Table
       objectReference: {fileID: 0}
     - target: {fileID: 4262578433224172387, guid: 99542adf42371dd43b80e29d388a5eba, type: 3}
       propertyPath: bet

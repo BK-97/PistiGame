@@ -9,7 +9,12 @@ public class TableController : MonoBehaviour
     public List<Button> buttons;
     public int maxBet;
     public int minBet;
-    public TextMeshProUGUI betText;
+    [SerializeField]
+    private TextMeshProUGUI betTMP;
+    [SerializeField]
+    private string tableNameText;
+    [SerializeField]
+    private TextMeshProUGUI tableNameTMP;
 
     private void Start()
     {
@@ -17,11 +22,12 @@ public class TableController : MonoBehaviour
             CloseAllButtons();
         else
             OpenAllButtons();
-        BetSet();
+        TableSet();
     }
-    private void BetSet()
+    private void TableSet()
     {
-        betText.text = "Bet Range: "+minBet.ToString() + "-" + maxBet.ToString();
+        betTMP.text = "Bet Range: "+minBet.ToString() + "-" + maxBet.ToString();
+        tableNameTMP.text = tableNameText.ToString();
     }
     private void CloseAllButtons()
     {

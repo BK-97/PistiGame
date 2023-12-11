@@ -1,17 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
+    #region Params
     public enum PlayerTypes { Player,Bot1,Bot2,Bot3}
     public PlayerTypes playerType;
-    public List<Card> currentDeck;
-    public Transform deckParent;
-    public GameLogic gameLogic;
-    public bool canPlay;
     public Transform collectedDeckParent;
+    public Transform deckParent;
+
+    [HideInInspector]
+    public List<Card> currentDeck;
+    [HideInInspector]
+    public GameLogic gameLogic;
+    [HideInInspector]
+    public bool canPlay;
+    [HideInInspector]
     public int point;
+
+    [SerializeField]
+    private TextMeshProUGUI currentCashTMP;
+    #endregion
+    private void OnEnable()
+    {
+        if (currentCashTMP != null)
+            currentCashTMP.text = ExchangeManager.Instance.GetCurrency(CurrencyType.Cash).ToString();
+    }
     public void CardAdd(Card addThis)
     {
         currentDeck.Add(addThis);

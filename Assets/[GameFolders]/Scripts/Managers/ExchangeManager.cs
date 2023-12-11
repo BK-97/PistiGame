@@ -30,7 +30,6 @@ public class ExchangeManager : Singleton<ExchangeManager>
         currencyDictionary[CurrencyType.Cash] = PlayerPrefs.GetInt(PrefsKeys.Cash, STARTER_COIN);
     }
     #endregion
-
     #region CurrencyMethods
     public bool UseCurrency(CurrencyType currencyType, int amount)
     {

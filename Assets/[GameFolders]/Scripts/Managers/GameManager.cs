@@ -102,18 +102,16 @@ public class GameManager : Singleton<GameManager>
         return sortedPlayers;
     }
 
-
     private void PlayerWinLose(bool isWin)
     {
         if (isWin)
         {
             PlayerPrefs.SetInt(PrefsKeys.WinCount, PlayerPrefs.GetInt(PrefsKeys.WinCount, 0) + 1);
-            ExchangeManager.Instance.AddCurrency(CurrencyType.Cash, currentBet);
+            ExchangeManager.Instance.AddCurrency(CurrencyType.Cash, currentBet*currentPlayers.Count);
         }
         else
         {
             PlayerPrefs.SetInt(PrefsKeys.LoseCount, PlayerPrefs.GetInt(PrefsKeys.LoseCount, 0) + 1);
-            ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, currentBet);
         }
         currentWinCount = PlayerPrefs.GetInt(PrefsKeys.WinCount, 0);
         currentLoseCount = PlayerPrefs.GetInt(PrefsKeys.LoseCount, 0);

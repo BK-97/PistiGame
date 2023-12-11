@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 7369830735389412274}
   - component: {fileID: 7369830735389412275}
   - component: {fileID: 2035389517765809242}
-  - component: {fileID: 4262578433224172387}
+  - component: {fileID: 3723617517641156018}
   m_Layer: 5
   m_Name: PlayNowButton
   m_TagString: Untagged
@@ -718,8 +718,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4262578433224172387}
-        m_TargetAssemblyTypeName: GameStartButton, Assembly-CSharp
+      - m_Target: {fileID: 3723617517641156018}
+        m_TargetAssemblyTypeName: QuickPlayButton, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -750,7 +750,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &4262578433224172387
+--- !u!114 &3723617517641156018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -759,9 +759,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7369830735389412273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf356597f29d31d4bad7b9ce67c88827, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ee1bcd6795d77b4da01337bb6a96999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableController: {fileID: 3300627130028082977}
 --- !u!1 &7369830735909061260
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +888,9 @@ MonoBehaviour:
   - {fileID: 7369830734987932353}
   maxBet: 0
   minBet: 0
-  betText: {fileID: 7369830734612781526}
+  betTMP: {fileID: 7369830734612781526}
+  tableNameText: 
+  tableNameTMP: {fileID: 7369830736307227580}
 --- !u!1 &7369830736307227578
 GameObject:
   m_ObjectHideFlags: 0

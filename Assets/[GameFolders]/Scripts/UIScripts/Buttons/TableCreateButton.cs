@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStartButton : MonoBehaviour
+public class TableCreateButton : MonoBehaviour
 {
     private TableCreator tableCreator;
     int playerCount=2;
@@ -16,6 +16,7 @@ public class GameStartButton : MonoBehaviour
     }
     private void StartGame()
     {
+        ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, bet);
         GameManager.OnGameStart.Invoke(playerCount, bet);
     }
 
