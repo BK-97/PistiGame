@@ -5,13 +5,14 @@ using Photon.Pun;
 using UnityEngine.SceneManagement;
 public class ConnectToServer : MonoBehaviourPunCallbacks
 {
-    private void Start()
+    public void LoginWithPhoton()
     {
         PhotonNetwork.ConnectUsingSettings();
     }
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
+        Debug.Log("Connected to Master");
         PhotonNetwork.JoinLobby();
     }
     public override void OnJoinedLobby()
