@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf96d3b6b84f1a46a6e00593d9a4a23, type: 3}
+  m_Name: ExampleButtonListSet
+  m_EditorClassIdentifier: 
+  intPrefName: ExampleIntPrefName
+  popupWidth: 100
+  listEntries:
+  - setName: First Set
+    setSO: {fileID: 11400000, guid: f40a208434901cd40949d13d3350d338, type: 2}
+  - setName: Second Set
+    setSO: {fileID: 11400000, guid: b37aa0e4e3b8dc54aad83faed2800e6d, type: 2}
+  - setName: Third Set
+    setSO: {fileID: 11400000, guid: ff08835c027ff014da2a621170010849, type: 2}

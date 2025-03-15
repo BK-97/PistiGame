@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a9576f1f8edd540a51ec85dcba69d5, type: 3}
+  m_Name: ExampleButtonList3
+  m_EditorClassIdentifier: 
+  buttons:
+  - isActive: 1
+    isExpanded: 0
+    type: 1
+    labelType: 0
+    labelText: Example from List 3
+    labelIcon: {fileID: 0}
+    useStyle: 1
+    editorStyle: 37
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 1
+    width: 150
+    useColors: 0
+    globalColor: {r: 0, g: 0, b: 0, a: 0}
+    contentColor: {r: 0, g: 0, b: 0, a: 0}
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: 
+    actions: []
+    showNameField: 0
+    intNamesList: []
+  - isActive: 1
+    isExpanded: 0
+    type: 1
+    labelType: 0
+    labelText: Example from List 3
+    labelIcon: {fileID: 0}
+    useStyle: 1
+    editorStyle: 37
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 1
+    width: 150
+    useColors: 0
+    globalColor: {r: 0, g: 0, b: 0, a: 0}
+    contentColor: {r: 0, g: 0, b: 0, a: 0}
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: 
+    actions: []
+    showNameField: 0
+    intNamesList: []
+  - isActive: 1
+    isExpanded: 0
+    type: 1
+    labelType: 0
+    labelText: Example from List 3
+    labelIcon: {fileID: 0}
+    useStyle: 1
+    editorStyle: 37
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 1
+    width: 150
+    useColors: 0
+    globalColor: {r: 0, g: 0, b: 0, a: 0}
+    contentColor: {r: 0, g: 0, b: 0, a: 0}
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: 
+    actions: []
+    showNameField: 0
+    intNamesList: []

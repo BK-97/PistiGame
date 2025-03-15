@@ -1,0 +1,253 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a9576f1f8edd540a51ec85dcba69d5, type: 3}
+  m_Name: ExampleButtonList1
+  m_EditorClassIdentifier: 
+  buttons:
+  - isActive: 1
+    isExpanded: 0
+    type: 1
+    labelType: 0
+    labelText: A1
+    labelIcon: {fileID: 0}
+    useStyle: 1
+    editorStyle: 39
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 0
+    width: 0
+    useColors: 1
+    globalColor: {r: 1, g: 1, b: 1, a: 1}
+    contentColor: {r: 1, g: 1, b: 1, a: 1}
+    backgroundColor: {r: 0.8502884, g: 1, b: 0, a: 1}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: 
+    actions:
+    - mouseButton: 0
+      keyboardButton: 0
+      buttonType: 8
+      buttonObject: {fileID: 0}
+      objectName: 
+      className: Assets/Liquid Glass Games/Manul Toolbar/Examples
+      methodName: LMB_None
+    showNameField: 0
+    intNamesList: []
+  - isActive: 1
+    isExpanded: 0
+    type: 1
+    labelType: 0
+    labelText: A2
+    labelIcon: {fileID: 0}
+    useStyle: 1
+    editorStyle: 39
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 0
+    width: 0
+    useColors: 1
+    globalColor: {r: 1, g: 1, b: 1, a: 1}
+    contentColor: {r: 0.6, g: 1, b: 0.93076545, a: 1}
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: 
+    actions:
+    - mouseButton: 0
+      keyboardButton: 0
+      buttonType: 9
+      buttonObject: {fileID: 0}
+      objectName: 
+      className: GameObjectToFind
+      methodName: LMB_None
+    showNameField: 0
+    intNamesList: []
+  - isActive: 1
+    isExpanded: 0
+    type: 1
+    labelType: 0
+    labelText: A3
+    labelIcon: {fileID: 0}
+    useStyle: 1
+    editorStyle: 39
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 0
+    width: 0
+    useColors: 1
+    globalColor: {r: 1, g: 1, b: 1, a: 1}
+    contentColor: {r: 1, g: 1, b: 1, a: 1}
+    backgroundColor: {r: 0.6, g: 1, b: 0.8980392, a: 1}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: 
+    actions:
+    - mouseButton: 0
+      keyboardButton: 0
+      buttonType: 10
+      buttonObject: {fileID: 0}
+      objectName: 
+      className: GameObject/3D Object/Cube
+      methodName: LMB_None
+    showNameField: 0
+    intNamesList: []
+  - isActive: 1
+    isExpanded: 0
+    type: 4
+    labelType: 0
+    labelText: Popup Example A
+    labelIcon: {fileID: 0}
+    useStyle: 0
+    editorStyle: 39
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 1
+    width: 115
+    useColors: 0
+    globalColor: {r: 1, g: 1, b: 1, a: 1}
+    contentColor: {r: 1, g: 1, b: 1, a: 1}
+    backgroundColor: {r: 0.6, g: 1, b: 0.8980392, a: 1}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: PopupExampleA
+    actions:
+    - mouseButton: 0
+      keyboardButton: 0
+      buttonType: 5
+      buttonObject: {fileID: 0}
+      objectName: 
+      className: ExampleStaticClass
+      methodName: LMB_None
+    showNameField: 0
+    intNamesList:
+    - itemName: First Option
+      itemIndex: 0
+    - itemName: Second Option
+      itemIndex: 1
+    - itemName: Third Option
+      itemIndex: 2
+    - itemName: Fourth Option
+      itemIndex: 3
+    - itemName: Fifth Option
+      itemIndex: 4
+  - isActive: 1
+    isExpanded: 0
+    type: 1
+    labelType: 0
+    labelText: Check A
+    labelIcon: {fileID: 0}
+    useStyle: 0
+    editorStyle: 39
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 0
+    width: 0
+    useColors: 0
+    globalColor: {r: 1, g: 1, b: 1, a: 1}
+    contentColor: {r: 1, g: 1, b: 1, a: 1}
+    backgroundColor: {r: 0.6, g: 1, b: 0.8980392, a: 1}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: 
+    actions:
+    - mouseButton: 0
+      keyboardButton: 0
+      buttonType: 5
+      buttonObject: {fileID: 0}
+      objectName: 
+      className: ExampleStaticClass
+      methodName: CheckOptionAPref
+    showNameField: 0
+    intNamesList: []
+  - isActive: 1
+    isExpanded: 0
+    type: 4
+    labelType: 0
+    labelText: Popup Example B
+    labelIcon: {fileID: 0}
+    useStyle: 0
+    editorStyle: 39
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 1
+    width: 200
+    useColors: 0
+    globalColor: {r: 1, g: 1, b: 1, a: 1}
+    contentColor: {r: 1, g: 1, b: 1, a: 1}
+    backgroundColor: {r: 0.6, g: 1, b: 0.8980392, a: 1}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: PopupExampleB
+    actions:
+    - mouseButton: 0
+      keyboardButton: 0
+      buttonType: 5
+      buttonObject: {fileID: 0}
+      objectName: 
+      className: ExampleStaticClass
+      methodName: LMB_None
+    showNameField: 0
+    intNamesList:
+    - itemName: 1st Option/First Suboption
+      itemIndex: 101
+    - itemName: 1st Option/Second Suboption
+      itemIndex: 102
+    - itemName: 1st Option/Third Suboption
+      itemIndex: 103
+    - itemName: 2nd Option/First Suboption
+      itemIndex: 201
+    - itemName: 2nd Option/Second Suboption
+      itemIndex: 202
+    - itemName: 2nd Option/Third Suboption
+      itemIndex: 203
+    - itemName: 3rd Option/First Suboption
+      itemIndex: 301
+    - itemName: 3rd Option/Second Suboption
+      itemIndex: 302
+    - itemName: 3rd Option/Third Suboption
+      itemIndex: 303
+  - isActive: 1
+    isExpanded: 0
+    type: 1
+    labelType: 0
+    labelText: Check B
+    labelIcon: {fileID: 0}
+    useStyle: 0
+    editorStyle: 39
+    styleName: 
+    skin: {fileID: 0}
+    useWidth: 0
+    width: 0
+    useColors: 0
+    globalColor: {r: 1, g: 1, b: 1, a: 1}
+    contentColor: {r: 1, g: 1, b: 1, a: 1}
+    backgroundColor: {r: 0.6, g: 1, b: 0.8980392, a: 1}
+    useTooltip: 0
+    linesCount: 0
+    labelTooltip: 
+    togglePrefName: 
+    actions:
+    - mouseButton: 0
+      keyboardButton: 0
+      buttonType: 5
+      buttonObject: {fileID: 0}
+      objectName: 
+      className: ExampleStaticClass
+      methodName: CheckOptionBPref
+    showNameField: 0
+    intNamesList: []
