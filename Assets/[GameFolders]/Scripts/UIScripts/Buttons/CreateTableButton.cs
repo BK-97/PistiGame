@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CreateTableButton : MonoBehaviour
 {
-    private RoomModeController tableController;
+    private TableController tableController;
     private void Start()
     {
-        tableController = GetComponentInParent<RoomModeController>();
+        tableController = GetComponentInParent<TableController>();
     }
     public void TriggerButton()
     {

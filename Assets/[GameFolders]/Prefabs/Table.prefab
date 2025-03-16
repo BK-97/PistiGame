@@ -222,7 +222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Masa Ac
+  m_text: CREATE TABLE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71856a4ca0a5465419dd4923ec95e781, type: 2}
   m_sharedMaterial: {fileID: 5890319016270533402, guid: 71856a4ca0a5465419dd4923ec95e781, type: 2}
@@ -249,10 +249,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 46.15
+  m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Masa Ara
+  m_text: PLAY NOW
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71856a4ca0a5465419dd4923ec95e781, type: 2}
   m_sharedMaterial: {fileID: 5890319016270533402, guid: 71856a4ca0a5465419dd4923ec95e781, type: 2}
@@ -552,10 +552,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 55
+  m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 55
   m_fontStyle: 0
@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 2035389517765809242}
   - component: {fileID: 3723617517641156018}
   m_Layer: 5
-  m_Name: FilterTablesButton
+  m_Name: PlayNowButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,10 +880,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7369830735909061260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f52754e76c7824685e3b542e5c707f, type: 3}
+  m_Script: {fileID: 11500000, guid: b9f96996fa7a95d45a5690d4467ca67f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
+  buttons:
+  - {fileID: 7369830735389412275}
+  - {fileID: 7369830734987932353}
   maxBet: 0
   minBet: 0
   betTMP: {fileID: 7369830734612781526}
