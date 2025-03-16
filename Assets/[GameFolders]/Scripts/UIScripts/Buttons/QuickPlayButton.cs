@@ -5,7 +5,7 @@ using UnityEngine;
 public class QuickPlayButton : MonoBehaviour
 {
     [SerializeField]
-    private TableController tableController;
+    private RoomModeController tableController;
     private int quickBet;
     private void OnEnable()
     {
