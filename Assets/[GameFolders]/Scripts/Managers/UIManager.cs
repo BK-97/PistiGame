@@ -45,13 +45,6 @@ public class UIManager : Singleton<UIManager>
                 break;
         }
     }
-    public void CreateTablePanel(int minBet,int maxBet)
-    {
-        createTablePanel.SetActive(true);
-        createTablePanel.GetComponent<TableCreator>().BetSetter(minBet, maxBet);
-        menuPanel.SetActive(false);
-
-    }
     public void OffPlayerChairs()
     {
         for (int i = 0; i < playerChairs.Count; i++)

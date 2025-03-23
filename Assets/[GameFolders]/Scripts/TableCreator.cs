@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -29,25 +27,19 @@ public class TableCreator : MonoBehaviour
     private Button lastSelectedButton;
 
     #endregion
-    void Start()
+    #region MainMethods
+    public void Initialize(RoomData roomData)
     {
+        minBet = roomData.minBetValue;
+        maxBet = roomData.maxBetValue;
         OnButtonSelected(twoPlayer);
-    }
-    public void BetSetter(int minbet,int maxbet)
-    {
-        minBet = minbet;
-        maxBet = maxbet;
-        Initialize();
-    }
-    private void Initialize()
-    {
+
         minText.text = minBet.ToString();
         maxText.text = maxBet.ToString();
         slider.minValue = minBet;
         slider.maxValue = maxBet;
         slider.value = (slider.minValue + slider.maxValue) * 0.5f;
         currentBet= (int)((slider.minValue + slider.maxValue) * 0.5f);
-        Debug.Log(currentBet);
     }
     void Update()
     {
@@ -75,4 +67,5 @@ public class TableCreator : MonoBehaviour
     {
         GetComponentInChildren<TableCreateButton>().SetTableCreatorParent(this);
     }
+    #endregion
 }
