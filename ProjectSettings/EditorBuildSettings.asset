@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/[GameFolders]/Scenes/Init.unity
     guid: b6b04f3a31e4ea0469c368dc512e41cd
   - enabled: 1
-    path: Assets/[GameFolders]/Scenes/Login.unity
-    guid: 97a28431cb1a9074f9bc5e5908dbb267
-  - enabled: 1
     path: Assets/[GameFolders]/Scenes/Interface.unity
     guid: 4e4f6d0761d88eb4a911273fe686b7ec
   - enabled: 1
